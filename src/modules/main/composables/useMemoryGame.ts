@@ -1,9 +1,5 @@
 import { ref } from 'vue'
-
-interface Card {
-  id?: number
-  image?: string
-}
+import type { Card } from '../types'
 
 const cards = ref<Card[]>([
   { id: 1, image: '1' },
@@ -15,15 +11,16 @@ const cards = ref<Card[]>([
 ])
 
 const shuffledCards = ref<Card[]>([])
+const turns = ref(0)
 
 const useMemoryGame = () => {
   const shuffleCards = () => {
-    shuffledCards.value = []
+    turns.value = 0
     shuffledCards.value = [...cards.value, ...cards.value]
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }))
   }
-  return { cards, shuffleCards, shuffledCards }
+  return { cards, turns, shuffleCards, shuffledCards }
 }
 
 export default useMemoryGame

@@ -1,22 +1,30 @@
 <script setup lang="ts">
 import { useMemoryGame } from '../composables'
-const { cards, shuffleCards, shuffledCards } = useMemoryGame()
-
+import { CardComponent } from '../components'
+import { Card } from '../types'
+const { cards, turns, shuffledCards, shuffleCards } = useMemoryGame()
+const handleChoice = (card: Card) => {
+  console.log(card)
+}
 console.log(cards.value)
 </script>
 <template>
   <v-container class="d-flex justify-center">
-    <v-responsive class="text-center">
+    <v-responsive
+      class="text-center"
+      width="100%"
+    >
       <h1>Jogo da Memória</h1>
       <v-btn @click="shuffleCards">Embaralhar</v-btn>
-      <ul>
-        <li
-          v-for="item in shuffledCards"
-          :key="item.id"
-        >
-          {{ item.image }}
-        </li>
-      </ul>
+      <div class="d-flex flex-wrap justify-center">
+        <CardComponent
+          v-for="card in shuffledCards"
+          :key="card.id"
+          :card="card"
+          @handle-choice="(n) => handleChoice(n)"
+        />
+      </div>
+      <div class="text-h3">{{ turns }}</div>
     </v-responsive>
   </v-container>
 </template>
