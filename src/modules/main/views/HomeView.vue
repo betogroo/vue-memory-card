@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { useMemoryGame } from '../composables'
 import { CardComponent } from '../components'
+import { Card } from '../types'
 const { cards, turns, shuffledCards, shuffleCards } = useMemoryGame()
-
+const handleChoice = (card: Card) => {
+  console.log(card)
+}
 console.log(cards.value)
 </script>
 <template>
@@ -18,6 +21,7 @@ console.log(cards.value)
           v-for="card in shuffledCards"
           :key="card.id"
           :card="card"
+          @handle-choice="(n) => handleChoice(n)"
         />
       </div>
       <div class="text-h3">{{ turns }}</div>
