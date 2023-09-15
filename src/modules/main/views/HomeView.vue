@@ -2,9 +2,17 @@
 import { useMemoryGame } from '../composables'
 import { CardComponent } from '../components'
 import { Card } from '../types'
-const { cards, turns, shuffledCards, shuffleCards } = useMemoryGame()
+const {
+  cards,
+  turns,
+  shuffledCards,
+  choiceOne,
+  choiceTwo,
+  shuffleCards,
+  handleChoice: _handleChoice,
+} = useMemoryGame()
 const handleChoice = (card: Card) => {
-  console.log(card)
+  _handleChoice(card)
 }
 console.log(cards.value)
 </script>
@@ -25,6 +33,12 @@ console.log(cards.value)
         />
       </div>
       <div class="text-h3">{{ turns }}</div>
+      <v-divider></v-divider>
+
+      <v-row>
+        <v-col>{{ choiceOne?.image }}</v-col>
+        <v-col>{{ choiceTwo?.image }}</v-col>
+      </v-row>
     </v-responsive>
   </v-container>
 </template>
