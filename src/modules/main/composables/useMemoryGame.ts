@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import type { Card } from '../types'
 
 const cards = ref<Card[]>([
@@ -11,7 +11,9 @@ const cards = ref<Card[]>([
 ])
 
 const shuffledCards = ref<Card[]>([])
-const turns = ref(0)
+const turns = ref(1)
+const choiceOne = ref<Card | null>(null)
+const choiceTwo = ref<Card | null>(null)
 
 const useMemoryGame = () => {
   const shuffleCards = () => {
@@ -20,7 +22,40 @@ const useMemoryGame = () => {
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }))
   }
-  return { cards, turns, shuffleCards, shuffledCards }
+
+  watch(
+    () => [choiceOne.value, choiceTwo.value],
+    () => {
+      if (choiceOne.value && choiceTwo.value) {
+        if (choiceOne.value.image === choiceTwo.value.image) {
+          console.log('Match')
+          resetTurn()
+        } else {
+          console.log('Dun Match')
+          resetTurn()
+        }
+      }
+    },
+  )
+
+  const handleChoice = (card: Card) => {
+    choiceOne.value ? (choiceTwo.value = card) : (choiceOne.value = card)
+  }
+
+  const resetTurn = () => {
+    choiceOne.value = null
+    choiceTwo.value = null
+    turns.value++
+  }
+  return {
+    cards,
+    turns,
+    choiceOne,
+    choiceTwo,
+    shuffleCards,
+    handleChoice,
+    shuffledCards,
+  }
 }
 
 export default useMemoryGame
