@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useMemoryGame } from '../composables'
-const { cards, shuffleCards, shuffledCards } = useMemoryGame()
+const { cards, turns, shuffleCards, shuffledCards } = useMemoryGame()
 
 console.log(cards.value)
 </script>
@@ -17,6 +17,7 @@ console.log(cards.value)
           {{ item.image }}
         </li>
       </ul>
+      <div class="text-h5">{{ turns }}</div>
     </v-responsive>
   </v-container>
 </template>
