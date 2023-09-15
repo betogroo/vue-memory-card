@@ -7,24 +7,36 @@ interface Props {
   faceColor?: string
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   turned: true,
   backColor: 'red',
   faceColor: 'white',
 })
+
+const emit = defineEmits(['handleChoice'])
+const handleChoice = () => {
+  emit('handleChoice', props.card)
+}
 </script>
 
 <template>
   <v-card
-    class="d-flex align-center pa-3 ma-1"
-    :color="faceColor"
+    class="d-flex flex-column align-center ma-1"
     height="85"
     width="85"
   >
-    <v-card-text
-      v-show="turned"
-      class="text-h3 text-center"
-      >{{ card.image }}</v-card-text
+    <v-sheet
+      :color="faceColor"
+      height="100%"
+      width="100%"
+      >{{ card.image }}</v-sheet
+    >
+    <v-sheet
+      :color="backColor"
+      height="100%"
+      width="100%"
+      @click="handleChoice()"
+      >back</v-sheet
     >
   </v-card>
 </template>
