@@ -14,8 +14,16 @@ const cards = ref<Card[]>([
   { id: 6, image: '6' },
 ])
 
+const shuffledCards = ref<Card[]>([])
+
 const useMemoryGame = () => {
-  return { cards }
+  const shuffleCards = () => {
+    shuffledCards.value = []
+    shuffledCards.value = [...cards.value, ...cards.value]
+      .sort(() => Math.random() - 0.5)
+      .map((card) => ({ ...card, id: Math.random() }))
+  }
+  return { cards, shuffleCards, shuffledCards }
 }
 
 export default useMemoryGame
