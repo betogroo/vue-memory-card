@@ -1,9 +1,5 @@
 import { ref } from 'vue'
-
-interface Card {
-  id?: number
-  image?: string
-}
+import type { Card } from '../types'
 
 const cards = ref<Card[]>([
   { id: 1, image: '1' },
