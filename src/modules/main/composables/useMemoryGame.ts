@@ -14,6 +14,7 @@ const shuffledCards = ref<Card[]>([])
 const turns = ref(0)
 const choiceOne = ref<Card | null>(null)
 const choiceTwo = ref<Card | null>(null)
+const disabled = ref<boolean>(false)
 
 const useMemoryGame = () => {
   const shuffleCards = () => {
@@ -37,6 +38,7 @@ const useMemoryGame = () => {
     () => [choiceOne.value, choiceTwo.value],
     () => {
       if (choiceOne.value && choiceTwo.value) {
+        disabled.value = true
         if (choiceOne.value.image === choiceTwo.value.image) {
           matchCard()
           resetTurn()
@@ -58,12 +60,14 @@ const useMemoryGame = () => {
     choiceOne.value = null
     choiceTwo.value = null
     turns.value++
+    disabled.value = false
   }
   return {
     cards,
     turns,
     choiceOne,
     choiceTwo,
+    disabled,
     shuffleCards,
     handleChoice,
     shuffledCards,
