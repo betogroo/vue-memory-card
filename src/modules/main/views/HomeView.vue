@@ -7,6 +7,7 @@ const {
   shuffledCards,
   choiceOne,
   choiceTwo,
+  disabled,
   shuffleCards,
   handleChoice: _handleChoice,
 } = useMemoryGame()
@@ -27,6 +28,7 @@ const handleChoice = (card: Card) => {
           v-for="card in shuffledCards"
           :key="card.id"
           :card="card"
+          :disabled="disabled"
           :flipped="
             card.matched ||
             choiceOne?.id === card.id ||

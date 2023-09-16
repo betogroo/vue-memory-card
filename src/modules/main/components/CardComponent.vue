@@ -5,17 +5,19 @@ interface Props {
   flipped?: boolean
   backColor?: string
   faceColor?: string
+  disabled?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   flipped: true,
+  disabled: false,
   backColor: 'red',
   faceColor: 'white',
 })
 
 const emit = defineEmits(['handleChoice'])
 const handleChoice = () => {
-  emit('handleChoice', props.card)
+  if (!props.disabled) emit('handleChoice', props.card)
 }
 </script>
 
@@ -27,6 +29,7 @@ const handleChoice = () => {
     <v-card
       class="front"
       :color="faceColor"
+      :disabled="disabled"
       height="85"
       width="85"
     >
@@ -35,6 +38,7 @@ const handleChoice = () => {
     <v-card
       class="back"
       :color="backColor"
+      :disabled="disabled"
       height="85"
       width="85"
       @click="handleChoice()"
