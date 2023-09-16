@@ -2,12 +2,12 @@ import { ref, watch } from 'vue'
 import type { Card } from '../types'
 
 const cards = ref<Card[]>([
-  { id: 1, image: '1' },
-  { id: 2, image: '2' },
-  { id: 3, image: '3' },
-  { id: 4, image: '4' },
-  { id: 5, image: '5' },
-  { id: 6, image: '6' },
+  { id: 1, image: '1', matched: false },
+  { id: 2, image: '2', matched: false },
+  { id: 3, image: '3', matched: false },
+  { id: 4, image: '4', matched: false },
+  { id: 5, image: '5', matched: false },
+  { id: 6, image: '6', matched: false },
 ])
 
 const shuffledCards = ref<Card[]>([])
