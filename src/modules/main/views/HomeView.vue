@@ -3,7 +3,6 @@ import { useMemoryGame } from '../composables'
 import { CardComponent } from '../components'
 import { Card } from '../types'
 const {
-  cards,
   turns,
   shuffledCards,
   choiceOne,
@@ -14,7 +13,6 @@ const {
 const handleChoice = (card: Card) => {
   _handleChoice(card)
 }
-console.log(cards.value)
 </script>
 <template>
   <v-container class="d-flex justify-center">

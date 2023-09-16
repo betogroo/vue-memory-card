@@ -29,7 +29,7 @@ const handleChoice = () => {
       :color="faceColor"
       height="100%"
       width="100%"
-      >{{ card.image }}</v-sheet
+      >{{ card.image }} - {{ card.matched }}</v-sheet
     >
     <v-sheet
       :color="backColor"
