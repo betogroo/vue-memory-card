@@ -23,24 +23,43 @@ const handleChoice = () => {
   <v-card
     class="d-flex flex-column align-center ma-1"
     :class="flipped ? 'flipped' : ''"
-    height="85"
-    width="85"
   >
     <v-sheet
-      v-if="flipped"
+      class="front"
       :color="faceColor"
-      height="100%"
-      width="100%"
+      height="85"
+      width="85"
       >{{ card.image }} - {{ card.matched }}</v-sheet
     >
     <v-sheet
-      v-else
+      class="back"
       :color="backColor"
-      height="100%"
-      width="100%"
+      height="85"
+      width="85"
       @click="handleChoice()"
       >back
       {{ card.image }}
     </v-sheet>
   </v-card>
 </template>
+
+<style lang="scss" scoped>
+.front {
+  transform: rotateY(90deg);
+  transition: all ease-in 0.2s;
+  position: absolute;
+}
+
+.flipped .front {
+  transform: rotateY(0deg);
+  transition-delay: 0.2s;
+}
+.back {
+  transition: all ease-in 0.2s;
+  transition-delay: 0.2s;
+}
+.flipped .back {
+  transform: rotateY(90deg);
+  transition-delay: 0s;
+}
+</style>
