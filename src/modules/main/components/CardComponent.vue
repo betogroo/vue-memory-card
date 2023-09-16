@@ -20,27 +20,27 @@ const handleChoice = () => {
 </script>
 
 <template>
-  <v-card
+  <div
     class="d-flex flex-column align-center ma-1"
     :class="flipped ? 'flipped' : ''"
   >
-    <v-sheet
+    <v-card
       class="front"
       :color="faceColor"
       height="85"
       width="85"
-      >{{ card.image }} - {{ card.matched }}</v-sheet
     >
-    <v-sheet
+      <v-img :src="`../../../../public/${card.image}.jfif`"></v-img>
+    </v-card>
+    <v-card
       class="back"
       :color="backColor"
       height="85"
       width="85"
       @click="handleChoice()"
-      >back
-      {{ card.image }}
-    </v-sheet>
-  </v-card>
+      ><v-img src="../../../../public/card_back_steam.jfif"></v-img>
+    </v-card>
+  </div>
 </template>
 
 <style lang="scss" scoped>
