@@ -42,7 +42,9 @@ const useMemoryGame = () => {
           resetTurn()
         } else {
           console.log('Dun Match')
-          resetTurn()
+          setTimeout(() => {
+            resetTurn()
+          }, 1000)
         }
       }
     },

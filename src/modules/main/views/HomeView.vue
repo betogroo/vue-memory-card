@@ -27,6 +27,11 @@ const handleChoice = (card: Card) => {
           v-for="card in shuffledCards"
           :key="card.id"
           :card="card"
+          :flipped="
+            card.matched ||
+            choiceOne?.id === card.id ||
+            choiceTwo?.id === card.id
+          "
           @handle-choice="(n) => handleChoice(n)"
         />
       </div>
