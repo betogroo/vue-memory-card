@@ -11,7 +11,7 @@ const cards = ref<Card[]>([
 ])
 
 const shuffledCards = ref<Card[]>([])
-const turns = ref(1)
+const turns = ref(0)
 const choiceOne = ref<Card | null>(null)
 const choiceTwo = ref<Card | null>(null)
 
@@ -23,12 +23,22 @@ const useMemoryGame = () => {
       .map((card) => ({ ...card, id: Math.random() }))
   }
 
+  const matchCard = () => {
+    shuffledCards.value = shuffledCards.value.map((card) => {
+      if (card.image === choiceOne.value?.image) {
+        return { ...card, matched: true }
+      } else {
+        return card
+      }
+    })
+  }
+
   watch(
     () => [choiceOne.value, choiceTwo.value],
     () => {
       if (choiceOne.value && choiceTwo.value) {
         if (choiceOne.value.image === choiceTwo.value.image) {
-          console.log('Match')
+          matchCard()
           resetTurn()
         } else {
           console.log('Dun Match')
