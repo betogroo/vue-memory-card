@@ -11,6 +11,8 @@ const {
   shuffleCards,
   handleChoice: _handleChoice,
 } = useMemoryGame()
+
+shuffleCards()
 const handleChoice = (card: Card) => {
   _handleChoice(card)
 }
@@ -37,13 +39,7 @@ const handleChoice = (card: Card) => {
           @handle-choice="(n) => handleChoice(n)"
         />
       </div>
-      <div class="text-h3">{{ turns }}</div>
-      <v-divider></v-divider>
-
-      <v-row>
-        <v-col>{{ choiceOne?.image }}</v-col>
-        <v-col>{{ choiceTwo?.image }}</v-col>
-      </v-row>
+      <div class="text-h5">Jogadas: {{ turns }}</div>
     </v-responsive>
   </v-container>
 </template>

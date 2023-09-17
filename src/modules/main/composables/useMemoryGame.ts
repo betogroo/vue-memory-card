@@ -19,6 +19,8 @@ const disabled = ref<boolean>(false)
 const useMemoryGame = () => {
   const shuffleCards = () => {
     turns.value = 0
+    choiceOne.value = null
+    choiceTwo.value = null
     shuffledCards.value = [...cards.value, ...cards.value]
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }))
