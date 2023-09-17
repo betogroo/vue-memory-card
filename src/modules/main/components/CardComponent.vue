@@ -14,8 +14,11 @@ const props = withDefaults(defineProps<Props>(), {
   backColor: 'red',
   faceColor: 'white',
 })
-
 const emit = defineEmits(['handleChoice'])
+const dinamicImage = (source: string, ext: string) => {
+  const imageUrl = new URL(`/src/assets/${source}.${ext}`, import.meta.url).href
+  return imageUrl
+}
 const handleChoice = () => {
   if (!props.disabled) emit('handleChoice', props.card)
 }
@@ -33,7 +36,7 @@ const handleChoice = () => {
       height="85"
       width="85"
     >
-      <v-img :src="`../../../../public/${card.image}.jfif`"></v-img>
+      <v-img :src="dinamicImage(card.image!, 'jfif')"></v-img>
     </v-card>
     <v-card
       class="back"
@@ -42,7 +45,7 @@ const handleChoice = () => {
       height="85"
       width="85"
       @click="handleChoice()"
-      ><v-img src="../../../../public/card_back_steam.jfif"></v-img>
+      ><v-img src="@/assets/card_back_steam.jfif"></v-img>
     </v-card>
   </div>
 </template>
