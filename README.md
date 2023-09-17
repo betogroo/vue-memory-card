@@ -1,57 +1,25 @@
-# essentials
+# Vue Memory Card Game
 
-## Project setup
+### This is a simple memory game project. It's built from a base Vue project, with all the code formatting and checking tools. It is also pre-configured for the use of route and state management. To see this project follow this [link](https://github.com/betogroo/vue-scaffold)
 
+## Install All Dependencies
 ```
-# yarn
-yarn
-
-# npm
 npm install
-
-# pnpm
-pnpm install
 ```
 
-### Compiles and hot-reloads for development
-
+## Install Husky
 ```
-# yarn
-yarn dev
+npm run prepare
+```
 
-# npm
+## Run App
+```
 npm run dev
-
-# pnpm
-pnpm dev
 ```
 
-### Compiles and minifies for production
-
-```
-# yarn
-yarn build
-
-# npm
-npm run build
-
-# pnpm
-pnpm build
-```
-
-### Lints and fixes files
-
-```
-# yarn
-yarn lint
-
-# npm
-npm run lint
-
-# pnpm
-pnpm lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://vitejs.dev/config/).
+## This project uses:
+- Vue
+- Vite
+- Vuetify
+- Typescript
+- Vue router
